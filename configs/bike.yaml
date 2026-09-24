@@ -1,0 +1,70 @@
+# ============================================================================
+# Dataset #2 — Capital Bikeshare (Washington DC), station-level daily activity.
+# Generalization check for the regime-robustness claim: same task, same models,
+# same protocol as configs/base.yaml, different domain and a larger COVID shock.
+# Only paths / regimes / dataset-specific filters differ.
+# ============================================================================
+
+seed: 42
+
+paths:
+  raw_glob: data/raw_bike/*-capitalbikeshare-tripdata.zip
+  processed: data/processed_bike
+  results: results_bike
+  figures: results_bike/figures
+
+data:
+  date_start: "2018-01-01"
+  date_end: "2021-12-31"
+  # Keep stations installed for >= this fraction of the span (rest is NaN).
+  coverage_threshold: 0.95
+  # Drop stations that are technically alive but essentially unused.
+  min_median_activity: 2
+
+# 2018-19 pre-COVID / 2020 shock / 2021 recovery.
+regimes:
+  pre:      [2018, 2019]
+  shock:    [2020, 2020]
+  recovery: [2021, 2021]
+
+graph:
+  geo:
+    sigma: null            # null -> std of pairwise distances (km)
+    top_k: 10
+    epsilon: 0.0
+  corr:
+    method: pearson
+    negative: relu
+    top_k: 10
+  mix:
+    alpha: 0.5
+    beta:  0.5
+
+transform:
+  log1p: true
+  zscore: true
+
+split:
+  train_ratio: 0.7
+  val_ratio: 0.1
+  window_K: 14
+  horizon: 1
+
+mask:
+  ratios: [0.25, 0.5, 0.75]
+  strategies: [random, hub_stratified]
+  # Ten evaluation masks per (ratio, strategy); the protocol averages a cell
+  # over 3 training seeds x these 10 masks.
+  seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  hub_quantile: 0.75
+
+train:
+  epochs: 60
+  batch_size: 32
+  lr: 0.001
+  weight_decay: 0.00001
+  patience: 12
+  device: cuda
+  hidden_dim: 64
+  num_layers: 2
+  dropout: 0.1

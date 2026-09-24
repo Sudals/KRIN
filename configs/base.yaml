@@ -1,0 +1,74 @@
+# ============================================================================
+# Airports. One configuration drives the whole pipeline:
+# data preparation, graph construction, splits, training and evaluation.
+# ============================================================================
+
+seed: 42
+
+paths:
+  raw_glob: data/raw/airport_traffic_*.csv
+  coords_raw: data/external/ourairports_raw.csv
+  coords: data/external/airport_coords.csv
+  processed: data/processed
+  results: results
+  figures: results/figures
+
+data:
+  target_col: FLT_TOT_1
+  node_key: APT_ICAO
+  date_col: FLT_DATE
+  # Keep airports observed on >= this fraction of all days in the full span.
+  coverage_threshold: 0.95
+  # Remaining intra-series gaps are recorded as a NaN-mask, not imputed here.
+
+# Regime definition (data range 2016–2026): pre-COVID / shock / recovery.
+regimes:
+  pre:      [2016, 2019]
+  shock:    [2020, 2021]
+  recovery: [2022, 2026]
+
+graph:
+  geo:
+    # Gaussian kernel on haversine distance; sigma defaults to std(distances).
+    sigma: null            # null -> std of pairwise distances (km)
+    top_k: 10
+    epsilon: 0.0           # drop weights below this after kernel
+  corr:
+    method: pearson        # pearson | spearman
+    negative: relu         # relu (max(0,r)) | abs
+    top_k: 10
+    # Correlation is ALWAYS computed on the train span only (leakage guard).
+  mix:
+    alpha: 0.5             # weight on A_geo
+    beta:  0.5             # weight on A_corr
+
+transform:
+  log1p: true
+  zscore: true             # per-node z-score; fit on TRAIN only
+
+split:
+  # In-regime experiment: chronological split within the chosen span.
+  train_ratio: 0.7
+  val_ratio: 0.1
+  # test_ratio is the remainder.
+  window_K: 14             # history length (days)
+  horizon: 1               # target is the single day after the window
+
+mask:
+  ratios: [0.25, 0.5, 0.75]   # fraction of nodes hidden (to reconstruct)
+  strategies: [random, hub_stratified]
+  # Ten evaluation masks per (ratio, strategy); the protocol averages a cell
+  # over 3 training seeds x these 10 masks.
+  seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  hub_quantile: 0.75          # nodes above this traffic quantile are "hubs"
+
+train:
+  epochs: 60
+  batch_size: 32
+  lr: 0.001
+  weight_decay: 0.00001
+  patience: 12
+  device: cuda             # falls back to cpu automatically
+  hidden_dim: 64
+  num_layers: 2
+  dropout: 0.1
