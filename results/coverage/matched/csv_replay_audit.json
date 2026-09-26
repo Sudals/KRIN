@@ -1,0 +1,33 @@
+{
+  "datasets": {
+    "cta": {
+      "source": "results_cta/coverage_runs.csv",
+      "sha256": "3fd55cb09b62daf6f759922eae1b20a70bcd9913840b989a7da9c9bbda7bf2a5",
+      "rows": 240,
+      "pairing_grid_complete": true,
+      "duplicate_keys": 0,
+      "reference_replicas_agree": true,
+      "snaive7_coverage_invariant": true,
+      "model_score_policy": "target_valid",
+      "score_support_status": "unverified"
+    },
+    "mta": {
+      "source": "results_mta/coverage_matched_runs.csv",
+      "sha256": "96dd422cb46fa0938c2114fecaeeeb695161b6420cb2d5b92f4be347b480aeec",
+      "rows": 240,
+      "pairing_grid_complete": true,
+      "duplicate_keys": 0,
+      "reference_replicas_agree": true,
+      "snaive7_coverage_invariant": true,
+      "model_score_policy": "target_and_lag7_valid",
+      "score_support_status": "unverified"
+    }
+  },
+  "resamples": 20000,
+  "seed": 0,
+  "input_source": "matched",
+  "bootstrap": "crossed_train_placement",
+  "verified_from_processed_data": false,
+  "analysis_sha256": "42d2f01f09a733d04940f929773278523221b816d1aa8208318767485993f946",
+  "validation_scope": "Statistics recomputed from released CSVs; processed data and prediction files were not reverified."
+}

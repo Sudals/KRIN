@@ -1,0 +1,196 @@
+{
+  "scope": "Validated Table 4 release overlay; final manuscript selects matched inputs.",
+  "anonymous_repository": "https://anonymous.4open.science/r/KRIN-91E4/",
+  "validation": {
+    "file_hashes_verified": true,
+    "comparisons": [
+      {
+        "input_source": "original",
+        "file": "table4.csv",
+        "rows": 4,
+        "maximum_absolute_difference": 0.0
+      },
+      {
+        "input_source": "original",
+        "file": "training_seed_means.csv",
+        "rows": 12,
+        "maximum_absolute_difference": 0.0
+      },
+      {
+        "input_source": "original",
+        "file": "training_seed_mae.csv",
+        "rows": 96,
+        "maximum_absolute_difference": 0.0
+      },
+      {
+        "input_source": "original",
+        "file": "paired_contrasts.csv",
+        "rows": 840,
+        "maximum_absolute_difference": 0.0
+      },
+      {
+        "input_source": "matched",
+        "file": "table4.csv",
+        "rows": 4,
+        "maximum_absolute_difference": 0.0
+      },
+      {
+        "input_source": "matched",
+        "file": "training_seed_means.csv",
+        "rows": 12,
+        "maximum_absolute_difference": 0.0
+      },
+      {
+        "input_source": "matched",
+        "file": "training_seed_mae.csv",
+        "rows": 96,
+        "maximum_absolute_difference": 0.0
+      },
+      {
+        "input_source": "matched",
+        "file": "paired_contrasts.csv",
+        "rows": 840,
+        "maximum_absolute_difference": 0.0
+      }
+    ],
+    "statistics_tests_passed": 4,
+    "raw_data_and_predictions_reverified": false
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "d6f648344afa53b7d900bc881e9189d813f20e73ade7d0006f52043bae887213",
+      "bytes": 12812
+    },
+    {
+      "path": "analysis/TABLE4.md",
+      "sha256": "78d09bfe1bfaf42fff2a0ec36f670ec588832d7baac4029edc01e01d30737119",
+      "bytes": 5033
+    },
+    {
+      "path": "analysis/analyse_coverage.py",
+      "sha256": "fe6bae6b0dfe83094a80b63b806488e0476867a34b51849e8d2c3f4f92acf26e",
+      "bytes": 315
+    },
+    {
+      "path": "analysis/recalculate_coverage.py",
+      "sha256": "42d2f01f09a733d04940f929773278523221b816d1aa8208318767485993f946",
+      "bytes": 32056
+    },
+    {
+      "path": "analysis/test_coverage_statistics.py",
+      "sha256": "b26f327f40b1bf160d46b25fd4d26c89d5352f2e6c9e02f51a6b20c5e72738ac",
+      "bytes": 5027
+    },
+    {
+      "path": "results/coverage/matched/audit.json",
+      "sha256": "98fae54e0089692211f12ea8045830beff96267ee48eef56ebbfa07da0161afa",
+      "bytes": 2799
+    },
+    {
+      "path": "results/coverage/matched/csv_replay_audit.json",
+      "sha256": "584b6f58c9a5a910d48d90816bcf35aa72ea04908fc05173a2830144bd9a4937",
+      "bytes": 1210
+    },
+    {
+      "path": "results/coverage/matched/matched_snaive7.csv",
+      "sha256": "a89b78c0a7610c98e78e268b6614e435e86f3ba236be7e71fd42e40c9e8524e0",
+      "bytes": 12232
+    },
+    {
+      "path": "results/coverage/matched/paired_contrasts.csv",
+      "sha256": "48e479c2461aa9a4832239ebdb66f39f796302864986280100107942197ebf22",
+      "bytes": 64846
+    },
+    {
+      "path": "results/coverage/matched/support_audit.json",
+      "sha256": "98fae54e0089692211f12ea8045830beff96267ee48eef56ebbfa07da0161afa",
+      "bytes": 2799
+    },
+    {
+      "path": "results/coverage/matched/table4.csv",
+      "sha256": "7355bd092a81521a17c381d4584ed33eeba29acfdf45db3fbcfb37ce90f2eba9",
+      "bytes": 1146
+    },
+    {
+      "path": "results/coverage/matched/training_seed_mae.csv",
+      "sha256": "591766338ef343f3c869265014d3747c0db4d85a31cc6d199c7a2c16746250ac",
+      "bytes": 10174
+    },
+    {
+      "path": "results/coverage/matched/training_seed_means.csv",
+      "sha256": "36aacbcba0b33bfaa13a67ca11d59ec5a26aa5482c535a590cd424ff155805bf",
+      "bytes": 1876
+    },
+    {
+      "path": "results/coverage/matched/training_seed_means.md",
+      "sha256": "1eeeec3665b2e42bda280473730fd4f3ad1e5d8de58aaa6ea706a3c11bade22b",
+      "bytes": 1504
+    },
+    {
+      "path": "results/coverage/original/audit.json",
+      "sha256": "f889b21c3054f6de5a8fedb8d9ee73e437f03c413c719764bee5c03f043597a9",
+      "bytes": 2487
+    },
+    {
+      "path": "results/coverage/original/csv_replay_audit.json",
+      "sha256": "f3b78da80b473e448da8ba019dc4d659572394f4dded146351ac9aa708ce49a0",
+      "bytes": 1194
+    },
+    {
+      "path": "results/coverage/original/matched_snaive7.csv",
+      "sha256": "064b597bea8911893734b744b780fcd9396101c6b37fe117d1d1b8db16651793",
+      "bytes": 12233
+    },
+    {
+      "path": "results/coverage/original/paired_contrasts.csv",
+      "sha256": "936b1b4697dd0fd152173df466ae31fba1e838a91b95a35de31fe4643583467b",
+      "bytes": 66073
+    },
+    {
+      "path": "results/coverage/original/support_audit.json",
+      "sha256": "f889b21c3054f6de5a8fedb8d9ee73e437f03c413c719764bee5c03f043597a9",
+      "bytes": 2487
+    },
+    {
+      "path": "results/coverage/original/table4.csv",
+      "sha256": "8c563331d71649360c7a35df2953adae6a31bc5126207b7cfceb179ead5682d5",
+      "bytes": 1156
+    },
+    {
+      "path": "results/coverage/original/training_seed_mae.csv",
+      "sha256": "b9d7963c45db5c502bca7c9bc597755e797e47aa872c529b78355d7118825fa8",
+      "bytes": 10272
+    },
+    {
+      "path": "results/coverage/original/training_seed_means.csv",
+      "sha256": "99e8ba969a5d442724674bd35227dcd3f764f86cef291f1cbf15a320978f477b",
+      "bytes": 1885
+    },
+    {
+      "path": "results/coverage/original/training_seed_means.md",
+      "sha256": "e63ac62561c0b98781b7369ac299799503d0cbf6fb0c29cf247026b798dbfcc8",
+      "bytes": 1505
+    },
+    {
+      "path": "results_cta/coverage_runs.csv",
+      "sha256": "3fd55cb09b62daf6f759922eae1b20a70bcd9913840b989a7da9c9bbda7bf2a5",
+      "bytes": 28035
+    },
+    {
+      "path": "results_mta/coverage_matched_provenance.json",
+      "sha256": "855fbc800bcc58f7f61775ad27a9f2d404c9159d21fbbded3fad70760fa565e9",
+      "bytes": 7750
+    },
+    {
+      "path": "results_mta/coverage_matched_runs.csv",
+      "sha256": "96dd422cb46fa0938c2114fecaeeeb695161b6420cb2d5b92f4be347b480aeec",
+      "bytes": 83615
+    },
+    {
+      "path": "results_mta/coverage_runs.csv",
+      "sha256": "c8e6843a54a9732b1acc80140fccff966337e339c0a5f25bd0dd9f4212f3bfc2",
+      "bytes": 27927
+    }
+  ]
+}
