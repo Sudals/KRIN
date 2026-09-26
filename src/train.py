@@ -101,8 +101,8 @@ def train_one(cfg, scenario, model_name, ratio, strategy, seed,
 
     model.set_graph(torch.tensor(bundle.A_hat, dtype=torch.float32, device=device),
                     torch.tensor(bundle.A_raw, dtype=torch.float32, device=device))
-    # Train-derived level prior. Handed identically to our model and to any wrapped
-    # baseline, so neither side gets a centring the other does not.
+    # Train-derived level prior. Handed identically to every centred model; only the
+    # ``_cd`` variants use it, so plain ``_c`` (KRIN) centring is the window mean.
     if hasattr(model, "set_level_prior"):
         model.set_level_prior(bundle.dow_weight)
     if hasattr(model, "set_support_stats") and bundle.rho is not None:

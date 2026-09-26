@@ -1,23 +1,23 @@
-"""Final protocol: GEO graph, pre-vs-shock only, 3 TRAINING seeds x 3 mask seeds.
+"""Main protocol: geographic graph, Normal (``inregime``) and Shock (``cross_pre2shock``).
 
-Differences from the earlier runs, all requested by the user:
-  * graph  — always ``A_geo`` (no correlation component anywhere)
-  * scenarios — ``inregime`` (normal) and ``cross_pre2shock`` only; the
-    ``recovery`` regime is retired and simply skipped here, so splits.json is
-    left intact for anything that still wants it.
-  * seeds  — each (model, scenario, ratio) is TRAINED 3 times (train_seed
-    0/1/2) and each trained model is evaluated on the 3 fixed mask seeds.
-    Reported mean/std therefore span 9 evaluations and capture BOTH training
-    randomness and mask variation; the old runs trained once and only varied
-    the mask.
+  * graph      always ``A_geo`` unless ``--graph`` is given
+  * seeds      each (model, scenario, ratio) is trained with training seeds 0/1/2
+               and every fitted model is evaluated on the mask seeds listed in the
+               configuration (0-9), i.e. 30 evaluations per cell
+  * models     pass the uncentred/centred pairs explicitly (e.g. ``spin spin_c``);
+               the default list is not that paired list
 
-Writes two files into the config's results dir:
-    runs_geo3.csv          long format, one row per (…, train_seed, mask_seed)
-    main_results_geo3.csv  aggregated mean/std, same schema as main_results.csv
+Writes into the config's results dir:
+    runs_<tag>.csv          long format, one row per (..., train_seed, mask_seed)
+    main_results_<tag>.csv  aggregated mean/std
 
-Usage (from project root):
-    CUDA_VISIBLE_DEVICES=0 python3 experiments/run_main.py configs/base.yaml
-    CUDA_VISIBLE_DEVICES=1 python3 experiments/run_main.py configs/mta.yaml --graph=A_mixed
+Usage (from the repository root):
+    python3 experiments/run_main.py configs/cta.yaml --tag=geo3m10 spin spin_c
+    # incomplete histories (Appendix C.1): point, or 7-day mean blocks
+    python3 experiments/run_main.py configs/cta.yaml --tag=protoB --scenarios=cross_pre2shock \
+        --ratios=0.5 --hist-missing=0.25 --hist-pattern=point spin spin_c
+    python3 experiments/run_main.py configs/cta.yaml --tag=protoB_block --scenarios=cross_pre2shock \
+        --ratios=0.5 --hist-missing=0.25 --hist-pattern=block --hist-block-len=7 spin spin_c
 """
 from __future__ import annotations
 
@@ -49,7 +49,7 @@ ALL_MODELS = ["gru", "stgnn", "ignnk", "satcn", "grin", "spin", "kits",
 def main(models, config, graph="A_geo", mask_seeds=None, tag_override=None,
          scenarios_override=None, ratios_override=None, train_seeds=None,
          split_shock_years=False, hist_missing=0.0, hist_pattern="point",
-         hist_seed=0):
+         hist_seed=0, hist_block_len=5):
     # "default" -> whatever splits.json says for the scenario. That matters for
     # leakage: the mixed graph is A_mixed in-regime but A_mixed_pre for the cross
     # scenarios, because its correlation half must be fit on the train span only.
@@ -61,9 +61,12 @@ def main(models, config, graph="A_geo", mask_seeds=None, tag_override=None,
         # Protocol-B holes. Set BEFORE any bundle is built so training and
         # evaluation see the same holey matrix, identically for every model.
         import kriging_data as _kd
-        _kd.set_hist_missing(hist_missing, hist_pattern, hist_seed)
+        # block_len stays at its default (5) unless given, so the point-pattern
+        # masks (whose seed digest includes block_len) are unchanged.
+        _kd.set_hist_missing(hist_missing, hist_pattern, hist_seed, hist_block_len)
         print(f"[final] history holes: rate={hist_missing} "
-              f"pattern={hist_pattern} seed={hist_seed}", flush=True)
+              f"pattern={hist_pattern} seed={hist_seed} "
+              f"block_len={hist_block_len}", flush=True)
     cfg = utils.load_config(config)
     device = utils.get_device(cfg["train"]["device"])
     proc = Path(cfg["paths"]["processed"])
@@ -153,7 +156,7 @@ if __name__ == "__main__":
     graph, mseeds, tag = "A_geo", None, None
     scen = rats = tsds = None
     ssy = False
-    hmiss, hpat, hseed = 0.0, "point", 0
+    hmiss, hpat, hseed, hblk = 0.0, "point", 0, 5
     rest = []
     for a in argv:
         if a.startswith("--graph="):
@@ -179,7 +182,9 @@ if __name__ == "__main__":
             hpat = a.split("=", 1)[1]
         elif a.startswith("--hist-seed="):
             hseed = int(a.split("=", 1)[1])
+        elif a.startswith("--hist-block-len="):
+            hblk = int(a.split("=", 1)[1])
         else:
             rest.append(a)
     main(rest or ALL_MODELS, conf, graph, mseeds, tag, scen, rats, tsds, ssy,
-         hmiss, hpat, hseed)
+         hmiss, hpat, hseed, hblk)

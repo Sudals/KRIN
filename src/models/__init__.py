@@ -77,11 +77,11 @@ def build_model(name: str, n_nodes: int, K: int, cfg: dict):
         return KRINNoCenter(n_nodes, K, hidden=h, gconv_layers=L, dropout=p)
     if name == "krinat":          # centring + attention aggregator + rho-weighted anchor
         return KRINAttn(n_nodes, K, hidden=h, gconv_layers=L, dropout=p)
-    # capacity sweep on our own model. Parameter parity with the baselines is not
+    # capacity sweep on the KRIN-class backbone (exploratory). Parameter parity with the baselines is not
     # required for the main table -- and in this setting capacity does not predict
     # accuracy anyway (the largest baseline, SPIN at 54,913, is among the worst on
     # airports; the smallest, IGNNK at 17,793, is the best). These variants tell us
-    # whether OUR model has headroom left.
+    # whether that backbone has headroom left.
     if name == "krin128":
         return KRIN(n_nodes, K, hidden=128, gconv_layers=L, dropout=p)
     if name == "krinat128":

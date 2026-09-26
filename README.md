@@ -47,6 +47,11 @@ named under `paths` in each configuration.
 pip install -r requirements.txt
 ```
 
+`torch_scatter` has no universal wheel; if the plain install fails, install the
+build matching your PyTorch/CUDA from https://data.pyg.org/whl/. It, `einops` and
+`torch_geometric` are needed only for the released-implementation adapters
+(model names ending in `_off`). The Table 4 statistics below need only NumPy and pandas.
+
 A CUDA GPU is assumed but not required; `train.device` in each config selects the
 device. The runs reported in the paper used a single 24 GB card, and the largest
 single training run takes about half an hour.
@@ -107,8 +112,22 @@ python3 experiments/run_main.py configs/cta.yaml --tag=official2 --ratios=0.5 \
         ignnk_off ignnk_off_c satcn_off satcn_off_c grin_off grin_off_c \
         kits_off kits_off_c spin_off spin_off_c
 
-# controlled level-shift sweep, applied at evaluation only
-python3 experiments/run_shift_sweep.py configs/cta.yaml
+# controlled level-shift sweep, applied at evaluation only (Appendix C.2)
+# main sweep: 12 alphas {0.15,...,5.0}, shift also covers the K history days
+python3 experiments/run_shift_sweep.py configs/cta.yaml --mode=pre     # shiftsweep.csv
+# onset variant: alpha {0.25, 0.5, 2.0}, shift starts on the first evaluation day
+python3 experiments/run_shift_sweep.py configs/cta.yaml --mode=onset   # shiftsweep_onset.csv
+
+# incomplete histories (Appendix C.1): 25% point holes, or 7-day mean blocks.
+# Add --split-shock-years for Airports.
+python3 experiments/run_main.py configs/cta.yaml --tag=protoB \
+        --scenarios=cross_pre2shock --ratios=0.5 \
+        --hist-missing=0.25 --hist-pattern=point \
+        stgnn stgnn_c ignnk ignnk_c satcn satcn_c grin grin_c spin spin_c kits kits_c
+python3 experiments/run_main.py configs/cta.yaml --tag=protoB_block \
+        --scenarios=cross_pre2shock --ratios=0.5 \
+        --hist-missing=0.25 --hist-pattern=block --hist-block-len=7 \
+        stgnn stgnn_c ignnk ignnk_c satcn satcn_c grin grin_c spin spin_c kits kits_c
 
 # training-free baselines, written to baselines.csv
 python3 src/baselines.py --config configs/cta.yaml

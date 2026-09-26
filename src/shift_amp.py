@@ -9,8 +9,8 @@ pre-COVID standard deviation of that node.
   shift     mean level over TEST days minus mean level over TRAIN days
   amp       peak-to-trough range of level(t) WITHIN the train span, i.e. how
             much level movement the model already saw while fitting
-  shift/amp the controlling quantity: a shock only breaks a pre-learned mapping
-            when it is large *relative to the level variation in training*
+  shift/amp reported for reference only; the paper uses the unnormalised |shift|
+            because dividing by amp did not improve alignment (Appendix C.2)
 
 Usage:  python3 src/shift_amp.py configs/cta.yaml [configs/base.yaml ...]
 """

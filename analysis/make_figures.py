@@ -1,11 +1,11 @@
 """Paper figures for the four-dataset, geo-graph, normal-vs-shock study.
 
-Supersedes ``make_figures.py``, which predates every current decision (it is
-airport-only, still plots the retired recovery regime, reads the mixed-graph
-``main_results.csv``, and labels STGNN-R as "ours").
+The manuscript crops the explanatory header of each PNG; captions in the paper
+are authoritative.
 
-Terminology fixed here, and it should match the manuscript:
-  * the model is **KRIN**; STGNN-R is a separate, earlier model of ours
+Terminology, matching the manuscript:
+  * **KRIN** is the mean-only centring operation applied through the ``_c``
+    wrapper (e.g. ``spin_c`` = SPIN-s + KRIN); STGNN is a standard control
   * the two conditions are **Normal** (``inregime``) and **Shock**
     (``cross_pre2shock``); the recovery regime is retired
   * every number is on the **geographic graph** ``A_geo``. the only graph built
@@ -97,9 +97,8 @@ MODELS = {
     "grin":   ("GRIN-s",        "#8c6d31", False),
 }
 # KRIN is the same wrapper applied uniformly to every backbone; ``spin_c`` is that
-# wrapper on SPIN, plotted here for reference rather than as a proposed system. (``krinat_noa`` is an equivalent
-# re-implementation and lands within training noise of it -- using the uniform
-# wrapper keeps the transfer table internally consistent.)
+# wrapper on SPIN (SPIN-s + KRIN in the paper). Exploratory registry entries such
+# as ``krinat_*`` are different architectures and are not used in any figure.
 OURS = "spin_c"
 SCEN = {"inregime": "Normal", "cross_pre2shock": "Shock"}
 RATIO = 0.5          # headline mask ratio
@@ -281,10 +280,9 @@ def fig1_support(rows):
                  title="pale = daily, bold = 7-day mean;\nthe band and every statistic\n"
                        "use the daily series",
                  title_fontsize=11)
-    fig.suptitle("Shaded band = range of system levels seen during training; |shift| is the level\n"
-                 "shift in units of each node's training standard deviation. The first two panels\n"
-                 "stay inside the band and nothing collapses there; the last three leave it below\n"
-                 "and 5 or 6 of 6 backbones collapse. Panels run in order of the diagnostic.",
+    fig.suptitle("Shaded band = range of system levels seen during training (train + val); "
+                 "|shift| is the level\nshift in units of each node's training standard "
+                 "deviation. Panels run in order of the diagnostic.",
                  y=1.02, fontsize=11)
     fig.tight_layout()
     _save(fig, "fig_support", pd.DataFrame(tab))
@@ -325,7 +323,7 @@ def fig2_main(order):
     fig.suptitle(f"Reconstruction error at r = {RATIO} hidden nodes, geographic graph. "
                  "Reference lines: historical average (dotted) and SNaive-7,\n"
                  "i.e. copying the hidden node's own value from a week earlier (dashed). "
-                 "a zero-parameter competitor most models fail to beat under shock.",
+                 "a training-free reference.",
                  y=1.10, fontsize=10)
     _save(fig, "fig_headline", pd.DataFrame(tab))
 
@@ -480,12 +478,8 @@ def fig_transfer():
         ax.set_title(name, fontsize=10.5); ax.grid(axis="y", visible=False)
     axes[0].legend(loc="upper center", bbox_to_anchor=(2.25, -0.24), ncol=3,
                    framealpha=0.95)
-    fig.suptitle("KRIN repairs every backbone, and reorders them. Numbers at the right "
-                 "are each backbone's rank before\u2192after; red = the order changed.\n"
-                 "SPIN-s, the most expressive aggregator, ranks 3rd, 4th and 4th uncentred "
-                 "on the three datasets whose level leaves training support, and 1st on all "
-                 "three once centred. Where nothing collapses (bikeshare) it was already 1st "
-                 "and half the ranks are unchanged.",
+    fig.suptitle("Backbone errors before and after KRIN. Numbers at the right are each "
+                 "backbone's rank before\u2192after; red = the rank changed.",
                  y=1.10, fontsize=10)
     _save(fig, "fig_transfer", pd.DataFrame(tab))
 
@@ -561,11 +555,8 @@ def fig_protob():
         ax.text(xi + 0.30, r[2] + 0.02, f"{r[2]:.2f}", ha="center", fontsize=7)
     axes[0].legend(loc="upper center", bbox_to_anchor=(2.3, -0.24), ncol=2,
                    framealpha=0.95)
-    fig.suptitle("The reordering is not an artefact of complete history. With 25% of the "
-                 "history removed, +KRIN still wins every one of the 24 cells and SPIN-s "
-                 "still takes 1st on all four datasets\n(5\u21921 Chicago, 4\u21921 airports, "
-                 "3\u21921 subway). Right: without centring the backbone ORDER is not "
-                 "reproducible across missing structures; with it, it is.",
+    fig.suptitle("25% pointwise missingness in the history. Right: Spearman rank "
+                 "correlation between complete and masked histories, before and after KRIN.",
                  y=1.13, fontsize=10)
     _save(fig, "fig_protob", pd.DataFrame(tab))
 

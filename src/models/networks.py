@@ -2,7 +2,7 @@
 
   RNNKriging  temporal-only (GRU/LSTM per node) — learned analogue of HA
   IGNNK       spatial-only diffusion graph conv over the window (static graph)
-  STGNN       ours: temporal recurrence + graph propagation + mask conditioning
+  STGNN       standard control: temporal recurrence + graph propagation + mask conditioning
 
 Inputs (scaled space):
   hist     (B, K, N)   K-day history for every node
@@ -98,7 +98,7 @@ class IGNNK(_Base):
 
 # --------------------------------------------------------------------------- #
 class STGNN(_Base):
-    """Ours: temporal GRU per node → graph propagation → masked readout.
+    """Standard control: temporal GRU per node → graph propagation → masked readout.
 
     The observed target value and the observed mask enter as explicit feature
     channels, so the network can distinguish "observed 0" from "hidden", and
@@ -192,20 +192,17 @@ class KRIN(_Base):
     """KRIN — Kriging Regime-Invariant Normalization.
 
     KRIN names the OPERATION, not this class: centre each node by its own K-day
-    window mean, predict, add the level back. Applied to a published backbone it is
-    written ``<method> + KRIN``; the best configuration in the paper is
-    ``SPIN + KRIN`` (registry name ``krinat_noa``). This class is the graph-conv
-    backbone carrying the same operation, kept for the ablations.
+    window mean, predict, add the level back. In the paper it is applied to every
+    backbone through the ``Centered`` wrapper below (registry suffix ``_c``), so
+    SPIN-s + KRIN is ``spin_c`` and IGNNK-R + KRIN is ``ignnk_off_c``.
 
-    RevIN (ICLR'22) adapted to kriging: the principled fix for the regime-shift
-    root cause.
+    This class is a separate GRU + graph-convolution backbone that carries the
+    same mean-only operation internally. It is kept only for auxiliary ablations
+    (e.g. ``krin_std``/``KRINStd`` in the appendix) and is not the configuration
+    reported as SPIN-s + KRIN.
 
-    Each node is normalized by ITS OWN K-day window statistics (μ_i, σ_i), so the
-    network only ever sees ~standardized, regime-invariant inputs; the prediction
-    is de-normalized with the same (μ_i, σ_i). Since μ_i is the node's recent level
-    (test-time, current regime), the output is restored to the *current* regime's
-    scale — there is no frozen train-level for an OOD shift to break. The spatial
-    baseline and graph conv all operate in instance-normalized space.
+    Each node is centred by its own K-day window mean only (no division by the
+    window standard deviation); the prediction is restored by adding that mean.
     """
 
     def __init__(self, n_nodes, K, hidden=64, gconv_layers=2, dropout=0.1, eps=1e-4):
@@ -427,7 +424,7 @@ class GATGRU(_Base):
 
 
 class STGNNRobustIA(_Base):
-    """STGNN-R strengthened (ours++): geo-restricted ATTENTION aggregation +
+    """Exploratory variant (not reported): geo-restricted ATTENTION aggregation +
     ITERATIVE refinement. Two things IGNNK structurally lacks:
 
     - Attention over observed geo-neighbours gives content-based aggregation
@@ -633,13 +630,11 @@ class KRINStd(KRIN):
 class Centered(_Base):
     """Wrap ANY model in KRIN's mean-only centre/restore, unchanged otherwise.
 
-    This answers whether KRIN's advantage is simply a normalisation that any
-    published method could adopt. The wrapper applies the identical operation
-    KRIN uses -- centre the history and the observed target day by each
-    node's own K-day window mean, run the inner model, add the level back -- so
-    the only difference that remains between ``<model>_c`` and KRIN is the
-    architecture, in particular whether the spatial baseline is itself computed
-    in centred space.
+    This is the KRIN operation used for every "+ KRIN" result in the paper
+    (registry suffix ``_c``): centre the history and the observed target day by
+    each node's own K-day window mean, run the inner model unchanged, and add the
+    level back. It adds no trainable parameters. ``use_dow`` is False for ``_c``,
+    so the level is the plain window mean.
     """
 
     def __init__(self, inner: nn.Module, K: int = 14, use_dow: bool = False):
@@ -658,9 +653,9 @@ class Centered(_Base):
 
     def forward(self, hist, x_obs, obs_mask):
         mu = hist.mean(dim=1)                                 # (B,N)
-        if self.dow_weight > 0.0 and self.dow_idx:            # same blend our model uses
+        if self.dow_weight > 0.0 and self.dow_idx:            # _cd variant only
             dow = hist[:, self.dow_idx].mean(dim=1)
-            mu = (1.0 - self.dow_weight) * mu + self.dow_weight * dow
+            mu = (1.0 - self.dow_weight) * mu + self.dow_weight * dow  # _cd only
         out = self.inner(hist - mu.unsqueeze(1),
                          (x_obs - mu) * obs_mask, obs_mask)
         return out + mu
@@ -863,7 +858,7 @@ class KRINAttn(KRIN):
 
     So once centring removes the out-of-support problem, expressiveness pays, and
     the most expressive aggregator here is attention over the observed nodes --
-    which is why ``spin_c`` beats KRIN, whose aggregation is a fixed-weight graph
+    which is why ``spin_c`` beats the ``KRIN`` class, whose aggregation is a fixed-weight graph
     convolution.
 
     This model takes that aggregator, and adds the one thing wrapping SPIN cannot

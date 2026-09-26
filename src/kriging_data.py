@@ -36,7 +36,7 @@ class Bundle:
     # It is a statistic (like the scaler's mean/std), not a tuned hyper-parameter:
     # the fraction of the flat-centred residual's variance that day-of-week explains.
     # 0 => plain window mean. Every model that centres gets the SAME value, so the
-    # comparison between our model and a wrapped baseline stays matched.
+    # comparison between any two centred models stays matched (used by _cd only).
     dow_weight: float = 0.0
     # Per-node statistics for the support-aware model, ALL FROM TRAIN ROWS ONLY.
     #   rho  (N,) how well a node's centred series is explained by its neighbours

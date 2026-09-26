@@ -9,15 +9,14 @@ say so.
             how much the mask draw moves the margin.
   nested    resample the 3 training seeds first, then resample mask seeds inside
             each drawn training seed. This treats the training run as the
-            sampling unit, which is the stricter reading and the one
-            is likely to ask for. With only 3 training runs it is necessarily
+            sampling unit, which is the stricter reading. With only 3 training runs it is necessarily
             wide.
 
 Both are computed on the SAME paired quantity: for every (train seed, mask seed)
 cell, the relative difference between the two models, so shared variation from
 the mask draw and from the training run cancels before resampling.
 
-Usage:  python3 src/bootstrap_ci.py [B]
+Usage:  python3 analysis/bootstrap_ci.py [B]   (B defaults to 4000 resamples)
 """
 from __future__ import annotations
 

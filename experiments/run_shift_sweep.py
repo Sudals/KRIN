@@ -10,7 +10,16 @@ predictions and only one of them can align.
 Each model is trained ONCE on unshifted data; alpha is applied at evaluation
 only, so the sweep costs one training per (model, seed).
 
-Usage: CUDA_VISIBLE_DEVICES=2 python3 experiments/run_shift_sweep.py configs/mta.yaml
+Two modes (Appendix C.2):
+  --mode=pre    main sweep (Tables 37-38): 12 alphas in [0.15, 5.0]; the shift
+                covers the evaluation span AND the K days before it, so every
+                history window is already at the new level -> shiftsweep.csv
+  --mode=onset  onset variant (Table 39): alpha in {0.25, 0.5, 2.0}; the shift
+                starts on the first evaluation day -> shiftsweep_onset.csv
+
+Usage:
+    python3 experiments/run_shift_sweep.py configs/mta.yaml --mode=pre
+    python3 experiments/run_shift_sweep.py configs/mta.yaml --mode=onset
 """
 from __future__ import annotations
 
@@ -35,13 +44,16 @@ from train import train_one
 
 MODELS = ["ignnk", "satcn", "grin", "spin", "kits", "stgnn",
           "ignnk_c", "satcn_c", "grin_c", "spin_c", "kits_c", "stgnn_c"]
-ALPHAS = [0.25, 0.5, 2.0]
-# "onset": the shift starts exactly at the test span, so the first K evaluation
-# days meet a history that straddles the transition. That is what a model
-# actually sees on the days right after a shock begins; the main sweep instead
-# shifted the K days before the span too, giving every test day a fully shifted
-# history.
-ONSET = "onset"
+# Main sweep ("pre"): the K days before the span move too, so every test day
+# sees a fully shifted history. Onset variant ("onset"): the shift starts exactly
+# at the test span, so the first K evaluation days meet a history that straddles
+# the transition.
+MODES = {
+    "pre":   dict(alphas=[0.15, 0.25, 0.35, 0.5, 0.7, 0.85,
+                          1.0, 1.2, 1.5, 2.0, 3.0, 5.0],
+                  out="shiftsweep.csv"),
+    "onset": dict(alphas=[0.25, 0.5, 2.0], out="shiftsweep_onset.csv"),
+}
 SCEN = "inregime"
 TRAIN_SEEDS = [0, 1, 2]
 MASK_SEEDS = [0, 1, 2]
@@ -88,7 +100,8 @@ def snaive7(bundle):
     return err / max(n, 1)
 
 
-def main(config):
+def main(config, mode="pre"):
+    ALPHAS, ONSET, OUTNAME = MODES[mode]["alphas"], mode, MODES[mode]["out"]
     cfg = utils.load_config(config)
     device = utils.get_device(cfg["train"]["device"])
     proc = Path(cfg["paths"]["processed"])
@@ -96,7 +109,7 @@ def main(config):
     res = Path(cfg["paths"]["results"]); res.mkdir(parents=True, exist_ok=True)
 
     diag = {a: diagnostic(cfg, a, ONSET) for a in ALPHAS}
-    print(f"[sweep] {config}  realised shift/amp per alpha", flush=True)
+    print(f"[sweep] {config}  mode={mode}  realised shift/amp per alpha", flush=True)
     for a, (s, amp) in diag.items():
         print(f"    alpha={a:<5} shift={s:+.3f}  amp={amp:.3f}  |shift|/amp={abs(s)/amp:.3f}")
 
@@ -124,9 +137,15 @@ def main(config):
             print(f"  {name} ts{ts}  ({(time.time()-t0)/60:.1f} min)", flush=True)
     kd.set_level_shift(1.0, "pre")
     df = pd.DataFrame(rows)
-    out = res / "shiftsweep_onset.csv"; df.to_csv(out, index=False)
+    out = res / OUTNAME; df.to_csv(out, index=False)
     print(f"\n[done] {len(df)} rows -> {out}  ({(time.time()-t0)/60:.1f} min)")
 
 
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else "configs/base.yaml")
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    opts = dict(a[2:].split("=", 1) for a in sys.argv[1:]
+                if a.startswith("--") and "=" in a)
+    mode = opts.get("mode", "pre")
+    if mode not in MODES:
+        raise SystemExit(f"--mode must be one of {sorted(MODES)}")
+    main(args[0] if args else "configs/base.yaml", mode)
