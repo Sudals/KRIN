@@ -28,6 +28,5 @@
   "input_source": "matched",
   "bootstrap": "crossed_train_placement",
   "verified_from_processed_data": false,
-  "analysis_sha256": "42d2f01f09a733d04940f929773278523221b816d1aa8208318767485993f946",
-  "validation_scope": "Statistics recomputed from released CSVs; processed data and prediction files were not reverified."
+  "analysis_sha256": "9f44da2ec6830cc86f6bed059691ae5bf380c5b3877162f2401fc28792056b51"
 }

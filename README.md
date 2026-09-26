@@ -6,7 +6,9 @@ Two claims organise the code.
 
 1. When evaluation demand shifts beyond the training range, learned
    reconstruction models can have higher error than training-free seasonal
-   persistence and common-mode correction.
+   persistence and common-mode correction. Failure also occurs in graph-free
+   controls, so spatial aggregation is not necessary for the observed failure;
+   this does not rule out effects of aggregation in other settings.
 2. Subtracting each node's recent history mean and restoring it after prediction
    reduces error across simplified and released implementations without adding
    learned parameters. Its advantage over a strong training-free baseline is
@@ -40,6 +42,41 @@ and training-seed means can be recomputed without model training or raw data.
 Raw datasets, model checkpoints, and the complete set of Appendix experiment
 outputs are not included. Additional outputs are written to the directories
 named under `paths` in each configuration.
+
+The accompanying coverage package in Appendix F.2 is included at this repository
+root. Its final input is **matched**: original Chicago runs and the separately
+retained Subway matched-scoring rerun. The public files are available through
+the [anonymous repository](https://anonymous.4open.science/r/KRIN-91E4/), including
+its **Full repo ZIP** download. File checksums are listed in
+[the release manifest](TABLE4_UPDATE_MANIFEST.json).
+
+## Reproduce Appendix F.2 from a fresh download
+
+Extract the submitted repository ZIP into a new directory and run these commands
+from that directory. This calculation needs Python 3.10 or later, NumPy and
+pandas; it does not use raw data, model checkpoints, or a GPU.
+
+```bash
+python3 -m pip install -r requirements-statistics.txt
+python3 analysis/analyse_coverage.py --input-source matched \
+  --output results/coverage/matched
+python3 -m unittest discover -s analysis -p test_coverage_statistics.py -v
+python3 analysis/verify_paper_tables.py --output results/coverage/matched
+```
+
+The analysis and test commands above are the commands in Appendix F.2. The last
+command additionally checks every displayed effect, interval endpoint, sign
+count and training-seed mean in Table 4 and Tables 48–50 against the submitted
+PDF, at each table's displayed precision. Its reference values were transcribed
+from the PDF, independently of the analysis outputs. See
+[the verification record](analysis/RELEASE_VERIFICATION.md) for the download and
+validation procedure and [the table protocol](analysis/TABLE4.md) for inputs.
+
+Reproducing these statistics from included CSVs is distinct from regenerating
+the model errors from raw observations. The latter requires processed data and
+training dependencies. The [matched-rerun instructions](analysis/MATCHED_RERUN.md)
+identify the final Subway entry point, configuration, scoring rule, source
+snapshot and recorded environment. They also explain numerical replay limits.
 
 ## Setup
 
@@ -138,6 +175,8 @@ python3 experiments/run_coverage.py configs/cta.yaml ignnk_off,ignnk_off_c
 
 # The coverage runner writes the original scoring design. To regenerate the
 # final Table 4 statistics, use the retained matched CSVs below.
+# To train new Subway matched-support runs, follow analysis/MATCHED_RERUN.md;
+# experiments/run_coverage_matched.py saves them in a separate output directory.
 
 # regional vs global shift, and history freshness
 python3 experiments/run_history.py configs/cta.yaml

@@ -1,0 +1,300 @@
+{
+  "scope": "Sources used by the final Subway rerun; historical hashes are preserved separately from release hashes. Unrelated original-workspace utilities are not bundled.",
+  "original_provenance": "results_mta/coverage_matched_provenance.json",
+  "files": [
+    {
+      "original_path": "src/baselines.py",
+      "original_sha256": "6af4ea37d04c378d0dbe4f8cf4de4063aeaf933a472677f8ec223f802c97c267",
+      "release_path": "src/baselines.py",
+      "release_sha256": "3b79cc9f763338189f1cf980ae705d044a6a3968580b34508b40ee7266ce344c",
+      "change": "documentation; models/__init__.py also removes unused stgnnrevin/revin aliases"
+    },
+    {
+      "original_path": "src/build_graphs.py",
+      "original_sha256": "5a2e4f6d9dfdc9856fa00484cde42803e5fe01a88116a4acfe757d59b04efe59",
+      "release_path": "src/build_graphs.py",
+      "release_sha256": "5a2e4f6d9dfdc9856fa00484cde42803e5fe01a88116a4acfe757d59b04efe59",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/data_prep.py",
+      "original_sha256": "ce1873bef1c3224583af92b0ec0c4117cc030cfd6bf26e56c0593a6fb1f7ddff",
+      "release_path": "src/data_prep.py",
+      "release_sha256": "ce1873bef1c3224583af92b0ec0c4117cc030cfd6bf26e56c0593a6fb1f7ddff",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/data_prep_aqs.py",
+      "original_sha256": "e5a6e10f5a661cc7d05891d80db14d9df8ac8b53a798e3ed463c8fec87b53afe",
+      "release_path": "src/data_prep_aqs.py",
+      "release_sha256": "e5a6e10f5a661cc7d05891d80db14d9df8ac8b53a798e3ed463c8fec87b53afe",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/data_prep_bike.py",
+      "original_sha256": "06aec8dbb73c4659900132caeb80b8734c5604f2eef1608544a92c6bf56bfc35",
+      "release_path": "src/data_prep_bike.py",
+      "release_sha256": "06aec8dbb73c4659900132caeb80b8734c5604f2eef1608544a92c6bf56bfc35",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/data_prep_cta.py",
+      "original_sha256": "6a5f80a04eea545c85b50d2666a6d0f08b31d9c62f9eb61694245fd727455369",
+      "release_path": "src/data_prep_cta.py",
+      "release_sha256": "123cda69affb685e475940556b871a78c1a77ce66f544cb49f9fedf584552f5f",
+      "change": "documentation; models/__init__.py also removes unused stgnnrevin/revin aliases"
+    },
+    {
+      "original_path": "src/data_prep_mta.py",
+      "original_sha256": "64b3dbbc15a65e52e5d68e9322983b5acb9ee66724a6507b7cdeda1700b32ad4",
+      "release_path": "src/data_prep_mta.py",
+      "release_sha256": "64b3dbbc15a65e52e5d68e9322983b5acb9ee66724a6507b7cdeda1700b32ad4",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/evaluate.py",
+      "original_sha256": "1a1157f95dd508d4619337bc787fa2b2c12276e110b9ecefd55910c9457e21f8",
+      "release_path": "src/evaluate.py",
+      "release_sha256": "1a1157f95dd508d4619337bc787fa2b2c12276e110b9ecefd55910c9457e21f8",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/kriging_data.py",
+      "original_sha256": "f1b2d3e315d387bfa529653c92aad7ea89cb22680acf3b12042929986610ed0f",
+      "release_path": "src/kriging_data.py",
+      "release_sha256": "b46e73055436b8b3132c750baee920f5bc835bebaf37127c9dab776f699b7d84",
+      "change": "documentation; models/__init__.py also removes unused stgnnrevin/revin aliases"
+    },
+    {
+      "original_path": "src/models/__init__.py",
+      "original_sha256": "e8ba7fbf0e7d6d5a87a55e25e3087fd20576b9039e5873f8f151b01d62731baf",
+      "release_path": "src/models/__init__.py",
+      "release_sha256": "ac53649ab8ab6273ec7b23f204c8d44bf821ceeef1ec0193640cd15dfc5eabce",
+      "change": "documentation; models/__init__.py also removes unused stgnnrevin/revin aliases"
+    },
+    {
+      "original_path": "src/models/layers.py",
+      "original_sha256": "6149e772fd3a6e54bc82d197be1e9a374b0138eedcee7edddb119ac07159bea7",
+      "release_path": "src/models/layers.py",
+      "release_sha256": "6149e772fd3a6e54bc82d197be1e9a374b0138eedcee7edddb119ac07159bea7",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/networks.py",
+      "original_sha256": "79fa06ca4a57f5091251656ea6f22965a3a150fd01204d915d7ff4a5b22cf9b9",
+      "release_path": "src/models/networks.py",
+      "release_sha256": "a873f521f2e43f188a70a93a826a64912ebbdc07273195cb41deefacc8c6078c",
+      "change": "documentation; models/__init__.py also removes unused stgnnrevin/revin aliases"
+    },
+    {
+      "original_path": "src/models/official/__init__.py",
+      "original_sha256": "1955ec320cee94a3ae671aacd6dd4c293f0b53c62bc0eae9093d961612ea8274",
+      "release_path": "src/models/official/__init__.py",
+      "release_sha256": "1955ec320cee94a3ae671aacd6dd4c293f0b53c62bc0eae9093d961612ea8274",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/_shims.py",
+      "original_sha256": "1f1c3e1fe07c352e3e52da851c5ab87186a707ccf387820c97b73375ea2e5b67",
+      "release_path": "src/models/official/_shims.py",
+      "release_sha256": "1f1c3e1fe07c352e3e52da851c5ab87186a707ccf387820c97b73375ea2e5b67",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/grin_gcrnn.py",
+      "original_sha256": "e0da7ff7ab5163bdefbcea9116b9fee1c1ce6590130b908137ff40d1d77e5111",
+      "release_path": "src/models/official/grin_gcrnn.py",
+      "release_sha256": "e0da7ff7ab5163bdefbcea9116b9fee1c1ce6590130b908137ff40d1d77e5111",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/grin_gril.py",
+      "original_sha256": "032c608e2ed2b31160091498a47cde42e99ce22ef2d26ab580a6ae78eea76012",
+      "release_path": "src/models/official/grin_gril.py",
+      "release_sha256": "032c608e2ed2b31160091498a47cde42e99ce22ef2d26ab580a6ae78eea76012",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/grin_model.py",
+      "original_sha256": "5da874a9973bbf124e1279a83122415ee0c833feecda14b75e476efb906556f5",
+      "release_path": "src/models/official/grin_model.py",
+      "release_sha256": "5da874a9973bbf124e1279a83122415ee0c833feecda14b75e476efb906556f5",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/grin_spatial_attention.py",
+      "original_sha256": "6a315c9cc280618d41b207881664517f91cd037b091a3c807c5f4eac07ff387e",
+      "release_path": "src/models/official/grin_spatial_attention.py",
+      "release_sha256": "6a315c9cc280618d41b207881664517f91cd037b091a3c807c5f4eac07ff387e",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/grin_spatial_conv.py",
+      "original_sha256": "9ec495b268816a6f3788cf2d3f284b9fb111113f712c952ec3f575255e7cd7d3",
+      "release_path": "src/models/official/grin_spatial_conv.py",
+      "release_sha256": "9ec495b268816a6f3788cf2d3f284b9fb111113f712c952ec3f575255e7cd7d3",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/ignnk.py",
+      "original_sha256": "14cb8196792d8373b60253f78fcb243050c0d8ac29a56c6553f3502d49e53ca8",
+      "release_path": "src/models/official/ignnk.py",
+      "release_sha256": "14cb8196792d8373b60253f78fcb243050c0d8ac29a56c6553f3502d49e53ca8",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/kits_lib_nn_models___init__.py",
+      "original_sha256": "1bbacd5a4739a1ae22633f6b28e9e2275b501d7ee723c3859e5d6fa7652289df",
+      "release_path": "src/models/official/kits_lib_nn_models___init__.py",
+      "release_sha256": "1bbacd5a4739a1ae22633f6b28e9e2275b501d7ee723c3859e5d6fa7652289df",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/kits_lib_nn_models_kits.py",
+      "original_sha256": "7beef93572b6f98bc9ffc91cd1c355715fdd67554aa156b991763ace59f18e61",
+      "release_path": "src/models/official/kits_lib_nn_models_kits.py",
+      "release_sha256": "7beef93572b6f98bc9ffc91cd1c355715fdd67554aa156b991763ace59f18e61",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/satcn_model.py",
+      "original_sha256": "1d0b2dc325b3c5a6dac9f58a5eb186bce8dc3a88fc38c6cda14dc35a51522114",
+      "release_path": "src/models/official/satcn_model.py",
+      "release_sha256": "1d0b2dc325b3c5a6dac9f58a5eb186bce8dc3a88fc38c6cda14dc35a51522114",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/satcn_scaler.py",
+      "original_sha256": "3a5a5a77948dc468695dd7792fe7aeea258c02df42eb54aa122caf151895b198",
+      "release_path": "src/models/official/satcn_scaler.py",
+      "release_sha256": "855a106fce1a36e3e5d57395207b2ebf02c752dd40235addaedc8a175de6cb63",
+      "change": "documentation; models/__init__.py also removes unused stgnnrevin/revin aliases"
+    },
+    {
+      "original_path": "src/models/official/satcn_st_aggregators_mask.py",
+      "original_sha256": "3d1b2ac78557cd3613b5eb4748fe6e695f1cdaf8a7d07e405bf4ee9600161a58",
+      "release_path": "src/models/official/satcn_st_aggregators_mask.py",
+      "release_sha256": "19538038bc6bf71b345d6d51190c5075c7c1f0e6c7f39a8266a8da4587fe2936",
+      "change": "documentation; models/__init__.py also removes unused stgnnrevin/revin aliases"
+    },
+    {
+      "original_path": "src/models/official/satcn_st_aggregators_new.py",
+      "original_sha256": "3771d596d09c2f8db91eafee3f5e8cca8bc4b055beefa220f08000249144167c",
+      "release_path": "src/models/official/satcn_st_aggregators_new.py",
+      "release_sha256": "95278315a0feb640c3d6e585b662818ee8f95931cf707906203df490f4698e34",
+      "change": "documentation; models/__init__.py also removes unused stgnnrevin/revin aliases"
+    },
+    {
+      "original_path": "src/models/official/spin_additive_attention.py",
+      "original_sha256": "267cd4d2415242d6dcf26d706477e919d02a0f9622580406aac35bd0e36932bf",
+      "release_path": "src/models/official/spin_additive_attention.py",
+      "release_sha256": "267cd4d2415242d6dcf26d706477e919d02a0f9622580406aac35bd0e36932bf",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/spin_attn.py",
+      "original_sha256": "0db8bf7c8fe26bf17bc1d9de7f81b376f2e4da60a93b6393562cb8035a465e43",
+      "release_path": "src/models/official/spin_attn.py",
+      "release_sha256": "0db8bf7c8fe26bf17bc1d9de7f81b376f2e4da60a93b6393562cb8035a465e43",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/spin_model.py",
+      "original_sha256": "a3c4747138593457ab77d4cbf492ba5a8565add46edbca0ab9579160ce807b36",
+      "release_path": "src/models/official/spin_model.py",
+      "release_sha256": "a3c4747138593457ab77d4cbf492ba5a8565add46edbca0ab9579160ce807b36",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/spin_pos.py",
+      "original_sha256": "c7b868dd79baf892f693fd7ecd3e1acc632e2a56e34661a2d3da21612aebefc4",
+      "release_path": "src/models/official/spin_pos.py",
+      "release_sha256": "c7b868dd79baf892f693fd7ecd3e1acc632e2a56e34661a2d3da21612aebefc4",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official/tsl_shim.py",
+      "original_sha256": "9d1d29e658b976bb675e632fb27557c478f7bf5331191f39a649f35ffed4facf",
+      "release_path": "src/models/official/tsl_shim.py",
+      "release_sha256": "9d1d29e658b976bb675e632fb27557c478f7bf5331191f39a649f35ffed4facf",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/official_wrap.py",
+      "original_sha256": "cbc05ce30e3d449d5fd0cc4a80eaf0357e58f7336c0416835e97ea953ff4b5b8",
+      "release_path": "src/models/official_wrap.py",
+      "release_sha256": "cbc05ce30e3d449d5fd0cc4a80eaf0357e58f7336c0416835e97ea953ff4b5b8",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/models/sota.py",
+      "original_sha256": "39308aaf9a4e41d0d11b381ffd1232de14cc51346f6dbbbe6efca83e4fdea4fe",
+      "release_path": "src/models/sota.py",
+      "release_sha256": "39308aaf9a4e41d0d11b381ffd1232de14cc51346f6dbbbe6efca83e4fdea4fe",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/shift_amp.py",
+      "original_sha256": "bc62fcfd806901d436495c9ae35ca5085024e799d07755f1f380708120d667d8",
+      "release_path": "src/shift_amp.py",
+      "release_sha256": "f0b05b25082c67f61c4dd6b4dd9ed116a5dd983fb9945b5224c583b09ea2fb6d",
+      "change": "documentation; models/__init__.py also removes unused stgnnrevin/revin aliases"
+    },
+    {
+      "original_path": "src/splits.py",
+      "original_sha256": "df65498f63e2a4e918a69d12f6ec537911841a12b25fa103242dce0d6a91f2ea",
+      "release_path": "src/splits.py",
+      "release_sha256": "df65498f63e2a4e918a69d12f6ec537911841a12b25fa103242dce0d6a91f2ea",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "src/train.py",
+      "original_sha256": "bc2a9e6874adf150446624ecd8d46905e39e19ec48fb240b1833efa7f36fcfe1",
+      "release_path": "src/train.py",
+      "release_sha256": "29a22c3353dfc127f91456e8fe2be7610ae4872c0d3f95270aac5eca122fc641",
+      "change": "documentation; models/__init__.py also removes unused stgnnrevin/revin aliases"
+    },
+    {
+      "original_path": "src/utils.py",
+      "original_sha256": "d0b53b5e1166b8afb1012790a6548eac23da0f1857b1fb794b721ec9aefa2731",
+      "release_path": "src/utils.py",
+      "release_sha256": "d0b53b5e1166b8afb1012790a6548eac23da0f1857b1fb794b721ec9aefa2731",
+      "change": "unchanged"
+    },
+    {
+      "original_path": "analysis/run_coverage_matched.py",
+      "original_sha256": "a14d5848eaf595318644ff8d1c0bfd813b8f467b866f4698c57e5431687f4603",
+      "release_path": "experiments/provenance/run_coverage_matched_original.py",
+      "release_sha256": "a14d5848eaf595318644ff8d1c0bfd813b8f467b866f4698c57e5431687f4603",
+      "change": "exact executed runner archive"
+    },
+    {
+      "original_path": "analysis/run_coverage_matched.py",
+      "original_sha256": "a14d5848eaf595318644ff8d1c0bfd813b8f467b866f4698c57e5431687f4603",
+      "release_path": "experiments/run_coverage_matched.py",
+      "release_sha256": "57e32e09db631e6d2915ea2c6ff852ff0e621d5868dce3948f4ba31789d2e770",
+      "change": "run_infoexp import renamed to run_history; separate output directory and extra provenance metadata"
+    },
+    {
+      "original_path": "analysis/run_coverage.py",
+      "original_sha256": "e5ff09a52f86ba0bafa3f37ed0d5a08fe72fe7e697aa8d47698146edc0f09732",
+      "release_path": "experiments/run_coverage.py",
+      "release_sha256": "637bb58bbbb665ee2601eae2a809a31889d778e8f871eaa8ad2c9353a72e89f7",
+      "change": "release import paths; unchanged functions"
+    },
+    {
+      "original_path": "analysis/run_infoexp.py",
+      "original_sha256": "14e23f20c25161868241e29377374bb5179a8326c23ec5032e7103ccf9e81b66",
+      "release_path": "experiments/run_history.py",
+      "release_sha256": "885ff1b092066466053a6ccfe21676b05dd4b1f997b417110a3d0a25b39c36f1",
+      "change": "release import paths; unchanged functions"
+    },
+    {
+      "original_path": "configs/mta.yaml",
+      "original_sha256": "0ab81b3adf8ef0a7683d13308aa4e812c160268749076f6cb8e0aa9a253c947d",
+      "release_path": "configs/coverage_matched/mta.yaml",
+      "release_sha256": "0ab81b3adf8ef0a7683d13308aa4e812c160268749076f6cb8e0aa9a253c947d",
+      "change": "exact configuration snapshot"
+    }
+  ]
+}

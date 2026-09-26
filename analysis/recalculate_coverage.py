@@ -480,6 +480,8 @@ def main(argv=None):
     for name, table in tables.items():
         table.to_csv(output / name, index=False, float_format="%.17g")
     (output / "audit.json").write_text(json.dumps(audit, indent=2) + "\n")
+    audit_name = "support_audit.json" if args.verify_baselines else "csv_replay_audit.json"
+    (output / audit_name).write_text(json.dumps(audit, indent=2) + "\n")
     (output / "REPORT.md").write_text(report(summary, references, audit, args.resamples, args.seed))
     (output / "training_seed_means.md").write_text(training_seed_report(tables["training_seed_means.csv"], input_source))
     headline = summary[(summary.metric == "MAE_over_snaive7") &

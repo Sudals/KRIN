@@ -1,0 +1,3 @@
+# Environment used to verify the released coverage statistics (Python 3.10+).
+numpy==2.1.2
+pandas==2.3.2

@@ -1,0 +1,491 @@
+{
+  "manuscript": {
+    "description": "Submitted PDF supplied on 2026-09-26; Tables 4, 48, 49, 50",
+    "sha256": "7f3a0c69d4f731bc606975d2f895fc6806a8cc3a313702251e6f0f7aa1ef4421",
+    "source": "Printed table values extracted from the PDF, independently of analysis outputs."
+  },
+  "inputs": {
+    "results_cta/coverage_runs.csv": "3fd55cb09b62daf6f759922eae1b20a70bcd9913840b989a7da9c9bbda7bf2a5",
+    "results_mta/coverage_matched_runs.csv": "96dd422cb46fa0938c2114fecaeeeb695161b6420cb2d5b92f4be347b480aeec"
+  },
+  "bootstrap": {
+    "input_source": "matched",
+    "resamples": 20000,
+    "seed": 0,
+    "bootstrap": "crossed_train_placement"
+  },
+  "tables": {
+    "4": [
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "D_uncentred": "1.0583",
+        "D_KRIN": "0.000118",
+        "R": "1.0581",
+        "R_ci_low": "0.5607",
+        "R_ci_high": "1.4708",
+        "R_positive": 15
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "D_uncentred": "0.4126",
+        "D_KRIN": "-0.000096",
+        "R": "0.4127",
+        "R_ci_low": "0.3527",
+        "R_ci_high": "0.4838",
+        "R_positive": 15
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "D_uncentred": "1.3793",
+        "D_KRIN": "-0.000022",
+        "R": "1.3793",
+        "R_ci_low": "1.1607",
+        "R_ci_high": "1.5682",
+        "R_positive": 15
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "D_uncentred": "0.4084",
+        "D_KRIN": "-0.000003",
+        "R": "0.4084",
+        "R_ci_low": "0.2437",
+        "R_ci_high": "0.5318",
+        "R_positive": 15
+      }
+    ],
+    "48": [
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "estimate": "1.058263",
+        "ci_low": "0.560654",
+        "ci_high": "1.471025",
+        "positive": 15
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin_c",
+        "estimate": "0.000118",
+        "ci_low": "-0.000171",
+        "ci_high": "0.000458",
+        "positive": 8
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "estimate": "0.412556",
+        "ci_low": "0.352517",
+        "ci_high": "0.483631",
+        "positive": 15
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off_c",
+        "estimate": "-0.000096",
+        "ci_low": "-0.000381",
+        "ci_high": "0.000184",
+        "positive": 6
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "estimate": "1.379266",
+        "ci_low": "1.160771",
+        "ci_high": "1.568462",
+        "positive": 15
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin_c",
+        "estimate": "-0.000022",
+        "ci_low": "-0.000303",
+        "ci_high": "0.000231",
+        "positive": 9
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "estimate": "0.408433",
+        "ci_low": "0.243650",
+        "ci_high": "0.531726",
+        "positive": 15
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off_c",
+        "estimate": "-0.000003",
+        "ci_low": "-0.000180",
+        "ci_high": "0.000211",
+        "positive": 9
+      }
+    ],
+    "49": [
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 0,
+        "D_uncentred": "1.207825409",
+        "D_KRIN": "0.000131512",
+        "R": "1.207693897"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 1,
+        "D_uncentred": "0.549139578",
+        "D_KRIN": "-0.000023331",
+        "R": "0.549162910"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 2,
+        "D_uncentred": "1.417822661",
+        "D_KRIN": "0.000246586",
+        "R": "1.417576075"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 0,
+        "D_uncentred": "0.396298375",
+        "D_KRIN": "-0.000032297",
+        "R": "0.396330672"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 1,
+        "D_uncentred": "0.457856634",
+        "D_KRIN": "-0.000155850",
+        "R": "0.458012484"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 2,
+        "D_uncentred": "0.383512271",
+        "D_KRIN": "-0.000099940",
+        "R": "0.383612211"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 0,
+        "D_uncentred": "1.149977674",
+        "D_KRIN": "0.000051900",
+        "R": "1.149925774"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 1,
+        "D_uncentred": "1.481966362",
+        "D_KRIN": "-0.000252571",
+        "R": "1.482218933"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 2,
+        "D_uncentred": "1.505853011",
+        "D_KRIN": "0.000134200",
+        "R": "1.505718811"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 0,
+        "D_uncentred": "0.235682806",
+        "D_KRIN": "-0.000072469",
+        "R": "0.235755275"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 1,
+        "D_uncentred": "0.510026775",
+        "D_KRIN": "-0.000099049",
+        "R": "0.510125824"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 2,
+        "D_uncentred": "0.479588550",
+        "D_KRIN": "0.000162918",
+        "R": "0.479425631"
+      }
+    ],
+    "50": [
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 0,
+        "no_shift_inside": "165.299",
+        "no_shift_outside": "171.509",
+        "regional_shift_inside": "43.806",
+        "regional_shift_outside": "110.143"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 1,
+        "no_shift_inside": "152.274",
+        "no_shift_outside": "152.510",
+        "regional_shift_inside": "62.509",
+        "regional_shift_outside": "92.259"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 2,
+        "no_shift_inside": "188.504",
+        "no_shift_outside": "192.158",
+        "regional_shift_inside": "62.862",
+        "regional_shift_outside": "140.437"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin_c",
+        "train_seed": 0,
+        "no_shift_inside": "127.997",
+        "no_shift_outside": "130.117",
+        "regional_shift_inside": "32.003",
+        "regional_shift_outside": "32.543"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin_c",
+        "train_seed": 1,
+        "no_shift_inside": "113.673",
+        "no_shift_outside": "115.148",
+        "regional_shift_inside": "28.428",
+        "regional_shift_outside": "28.796"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "SPIN-s",
+        "model": "spin_c",
+        "train_seed": 2,
+        "no_shift_inside": "118.761",
+        "no_shift_outside": "120.982",
+        "regional_shift_inside": "29.688",
+        "regional_shift_outside": "30.259"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 0,
+        "no_shift_inside": "213.708",
+        "no_shift_outside": "217.615",
+        "regional_shift_inside": "76.307",
+        "regional_shift_outside": "98.899"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 1,
+        "no_shift_inside": "189.060",
+        "no_shift_outside": "195.561",
+        "regional_shift_inside": "82.586",
+        "regional_shift_outside": "109.292"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 2,
+        "no_shift_inside": "217.831",
+        "no_shift_outside": "227.838",
+        "regional_shift_inside": "133.765",
+        "regional_shift_outside": "157.148"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off_c",
+        "train_seed": 0,
+        "no_shift_inside": "160.530",
+        "no_shift_outside": "169.988",
+        "regional_shift_inside": "40.121",
+        "regional_shift_outside": "42.486"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off_c",
+        "train_seed": 1,
+        "no_shift_inside": "144.155",
+        "no_shift_outside": "153.184",
+        "regional_shift_inside": "36.035",
+        "regional_shift_outside": "38.285"
+      },
+      {
+        "dataset": "Chicago",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off_c",
+        "train_seed": 2,
+        "no_shift_inside": "147.125",
+        "no_shift_outside": "156.195",
+        "regional_shift_inside": "36.785",
+        "regional_shift_outside": "39.049"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 0,
+        "no_shift_inside": "643.607",
+        "no_shift_outside": "670.080",
+        "regional_shift_inside": "170.821",
+        "regional_shift_outside": "463.498"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 1,
+        "no_shift_inside": "570.198",
+        "no_shift_outside": "581.463",
+        "regional_shift_inside": "284.252",
+        "regional_shift_outside": "655.584"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin",
+        "train_seed": 2,
+        "no_shift_inside": "639.426",
+        "no_shift_outside": "663.281",
+        "regional_shift_inside": "190.678",
+        "regional_shift_outside": "571.060"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin_c",
+        "train_seed": 0,
+        "no_shift_inside": "515.947",
+        "no_shift_outside": "518.245",
+        "regional_shift_inside": "129.095",
+        "regional_shift_outside": "129.683"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin_c",
+        "train_seed": 1,
+        "no_shift_inside": "492.438",
+        "no_shift_outside": "497.921",
+        "regional_shift_inside": "123.219",
+        "regional_shift_outside": "124.526"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "SPIN-s",
+        "model": "spin_c",
+        "train_seed": 2,
+        "no_shift_inside": "499.417",
+        "no_shift_outside": "500.822",
+        "regional_shift_inside": "124.938",
+        "regional_shift_outside": "125.322"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 0,
+        "no_shift_inside": "1042.768",
+        "no_shift_outside": "1044.907",
+        "regional_shift_inside": "363.736",
+        "regional_shift_outside": "422.720"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 1,
+        "no_shift_inside": "900.216",
+        "no_shift_outside": "901.543",
+        "regional_shift_inside": "399.338",
+        "regional_shift_outside": "526.150"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off",
+        "train_seed": 2,
+        "no_shift_inside": "924.989",
+        "no_shift_outside": "923.135",
+        "regional_shift_inside": "344.736",
+        "regional_shift_outside": "463.390"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off_c",
+        "train_seed": 0,
+        "no_shift_inside": "767.864",
+        "no_shift_outside": "766.053",
+        "regional_shift_inside": "192.025",
+        "regional_shift_outside": "191.555"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off_c",
+        "train_seed": 1,
+        "no_shift_inside": "791.640",
+        "no_shift_outside": "793.875",
+        "regional_shift_inside": "197.891",
+        "regional_shift_outside": "198.425"
+      },
+      {
+        "dataset": "Subway",
+        "backbone": "IGNNK-R",
+        "model": "ignnk_off_c",
+        "train_seed": 2,
+        "no_shift_inside": "883.363",
+        "no_shift_outside": "887.176",
+        "regional_shift_inside": "220.883",
+        "regional_shift_outside": "221.879"
+      }
+    ]
+  }
+}

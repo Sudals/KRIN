@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "manuscript_sha256": "7f3a0c69d4f731bc606975d2f895fc6806a8cc3a313702251e6f0f7aa1ef4421",
+  "comparison": "All displayed values at their printed precision; exact sign counts",
+  "checked_values_by_table": {
+    "4": 24,
+    "48": 32,
+    "49": 36,
+    "50": 96
+  },
+  "checked_values_total": 188,
+  "input_hashes_match": true,
+  "analysis_sha256": "9f44da2ec6830cc86f6bed059691ae5bf380c5b3877162f2401fc28792056b51",
+  "raw_scoring_support_reverified": false
+}

@@ -1,0 +1,21 @@
+{
+  "python": "3.10.18",
+  "packages": {
+    "numpy": "2.1.2",
+    "pandas": "2.3.2",
+    "pyarrow": "24.0.0",
+    "torch": "2.7.1+cu118",
+    "torch-geometric": "2.6.1",
+    "torch-scatter": "2.1.2+pt27cpu",
+    "einops": "0.8.1"
+  },
+  "cuda_runtime": "11.8",
+  "cudnn": 90100,
+  "cudnn_deterministic": false,
+  "cudnn_benchmark": false,
+  "deterministic_algorithms": false,
+  "CUDA_VISIBLE_DEVICES_for_run": "1",
+  "dependency_target": "/tmp/traffic_coverage_deps",
+  "torch_scatter_usage": "Imported by the shared official wrapper; IGNNK does not call torch_scatter.",
+  "evaluation_batch_size_limit": 16
+}

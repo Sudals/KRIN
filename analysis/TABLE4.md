@@ -9,6 +9,20 @@ SNaive-7 denominators are rejected.
 The final manuscript uses `--input-source matched`; the `original` selection is
 retained only for sensitivity and provenance.
 
+This repository root contains the accompanying package described in Appendix
+F.2; the analysis code and input CSVs are not in a separate supplement.
+
+To compare a fresh CSV-only replay with the submitted manuscript, run
+`python3 analysis/verify_paper_tables.py --output results/coverage/matched`.
+The reference file `paper_tables_reference.json` records the PDF's SHA-256 and
+the printed values in Table 4 and Tables 48–50. Verification uses each printed
+value's decimal precision, checks all 96 condition-specific MAE means, and
+requires the final matched input hashes and bootstrap settings.
+
+The separate [matched-rerun entry point and configuration](MATCHED_RERUN.md)
+document how the final Subway errors were generated. CSV-only replay does not
+rerun that training or recheck raw scoring support.
+
 ## Input files
 
 | Selection | Chicago | Subway |

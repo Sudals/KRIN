@@ -9,17 +9,7 @@
       "reference_replicas_agree": true,
       "snaive7_coverage_invariant": true,
       "model_score_policy": "target_valid",
-      "processed_sha256": {
-        "data/processed_cta/traffic_matrix.parquet": "87c55ac2aca401502324196d10fdee256579cb00b68703328e6fd58c6a0a2d05",
-        "data/processed_cta/splits.json": "df36aad08fd4b2bb11a02066ef38d298349e0d7ff707ee0a3a0597f02ee8964b",
-        "data/processed_cta/A_geo.npy": "f4834eeb7bf90a6a32039a801a56d41eeb6f0ebd0f996f66c4a19f56f4b9e1fe",
-        "data/processed_cta/dates.json": "cb54d129e9c48120eba568f93dd62575652cae48ff85d7ba3d7b43463fe23858"
-      },
-      "max_snaive7_abs_difference": 2.842170943040401e-14,
-      "max_common_mode_abs_difference": 5.684341886080802e-14,
-      "lag7_missing_target_entries_across_placements": 0,
-      "unmatched_scoring_entries_across_placements": 0,
-      "score_support_status": "exact"
+      "score_support_status": "unverified"
     },
     "mta": {
       "source": "results_mta/coverage_runs.csv",
@@ -30,23 +20,13 @@
       "reference_replicas_agree": true,
       "snaive7_coverage_invariant": true,
       "model_score_policy": "target_valid",
-      "processed_sha256": {
-        "data/processed_mta/traffic_matrix.parquet": "284a093b44bfa6e2edd42e7767e1e0a6abe568fd6c361aa9ab650ab96d4ff315",
-        "data/processed_mta/splits.json": "36a2b5a1fc42370af9b0c61481b0863ecc22f637d466827a29d0428b0be1bea4",
-        "data/processed_mta/A_geo.npy": "7fcdbf63ad96ce25e1415a763c2771a4b67897f9876300991628cbd8f163259e",
-        "data/processed_mta/dates.json": "cb54d129e9c48120eba568f93dd62575652cae48ff85d7ba3d7b43463fe23858"
-      },
-      "max_snaive7_abs_difference": 2.2737367544323206e-13,
-      "max_common_mode_abs_difference": 0.0,
-      "lag7_missing_target_entries_across_placements": 38,
-      "unmatched_scoring_entries_across_placements": 38,
-      "score_support_status": "mismatch"
+      "score_support_status": "unverified"
     }
   },
   "resamples": 20000,
   "seed": 0,
   "input_source": "original",
   "bootstrap": "crossed_train_placement",
-  "verified_from_processed_data": true,
-  "analysis_sha256": "42d2f01f09a733d04940f929773278523221b816d1aa8208318767485993f946"
+  "verified_from_processed_data": false,
+  "analysis_sha256": "9f44da2ec6830cc86f6bed059691ae5bf380c5b3877162f2401fc28792056b51"
 }
