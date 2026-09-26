@@ -1,4 +1,4 @@
-# Level Shift, Not Aggregation
+# Level-Shift Failures in Spatiotemporal Kriging with Target-Node History: Diagnosis and Repair
 
 This repository provides the data-processing, training, and analysis code used to reproduce the main-paper tables, figures, and central quantitative claims.
 
